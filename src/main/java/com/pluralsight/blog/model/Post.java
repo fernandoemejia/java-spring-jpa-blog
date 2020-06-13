@@ -3,7 +3,9 @@ package com.pluralsight.blog.model;
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -18,9 +20,14 @@ public class Post {
     private String author;
     @Temporal(TemporalType.DATE)
     private Date date;
+    @ManyToOne
+    private Category category;
+    @OneToMany
+    List<Post> posts;
 
     public Post() {
         super();
+        posts= new ArrayList<>();
     }
 
     public Post(Long id, String title, String lead, String body, String author, Date date) {
@@ -84,5 +91,20 @@ public class Post {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Category getCategory(){
+        return category;
+    }
+    public void setCategory(Category category){
+        this.category=category;
+    }
+
+    public List<Post> getPosts(){
+        return posts;
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
     }
 }
