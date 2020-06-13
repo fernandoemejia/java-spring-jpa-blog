@@ -10,6 +10,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @OneToMany
+    private List<Post> posts;
 
     public Category() {
         super();
