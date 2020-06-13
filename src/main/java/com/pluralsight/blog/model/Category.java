@@ -15,6 +15,7 @@ public class Category {
 
     public Category() {
         super();
+        posts= new ArrayList<>();
     }
 
     public Long getId() {
